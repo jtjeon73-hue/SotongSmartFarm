@@ -53,6 +53,9 @@ class ContentPage extends StatelessWidget {
               MetaChip(label: content.contentType.label),
               ...content.farmTypes.map((f) => MetaChip(label: f.label)),
               MetaChip(label: content.verificationStatus.label),
+              MetaChip(
+                label: '적용 ${content.applicationValidationStatus.label}',
+              ),
               if (content.checkedAt != null)
                 MetaChip(label: '확인일 ${content.checkedAt}'),
             ],

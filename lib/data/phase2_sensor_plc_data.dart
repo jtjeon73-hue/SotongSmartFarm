@@ -16,7 +16,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
       FarmType.livestock,
     ],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -153,7 +155,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
       FarmType.orchard,
     ],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -384,7 +388,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
       FarmType.openField,
     ],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -610,7 +616,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
     contentType: ContentType.procedure,
     farmTypes: const [FarmType.general],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -1045,7 +1053,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
     contentType: ContentType.procedure,
     farmTypes: const [FarmType.general],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -1279,7 +1289,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
     contentType: ContentType.procedure,
     farmTypes: const [FarmType.general],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -1545,7 +1557,9 @@ const Map<String, SmartFarmContent> phase2SensorPlcOverrides = {
     contentType: ContentType.troubleshooting,
     farmTypes: const [FarmType.general, FarmType.livestock],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(

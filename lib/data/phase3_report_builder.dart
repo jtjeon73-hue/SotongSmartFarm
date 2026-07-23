@@ -67,14 +67,17 @@ String buildPhase3FullReport({
 - 예제 수: ${educationalCodeExamples.length}
 - 실행·컴파일 상태: 상태 라벨로 구분, MFC·PLC는 검증했다고 표시하지 않음
 
-## 6. 출처
+## 6. 출처 (sourceVerificationStatus)
 - 전체: ${ContentCatalog.sources.length}
 - verified: ${src(VerificationStatus.verified)}
 - versionDependent: ${src(VerificationStatus.versionDependent)}
 - needsReview: ${src(VerificationStatus.needsReview)}
 - manufacturerManualRequired: ${src(VerificationStatus.manufacturerManualRequired)}
-- fieldValidationRequired: ${src(VerificationStatus.fieldValidationRequired)}
 - educationalExample: ${src(VerificationStatus.educationalExample)}
+
+## 6b. 적용 검증 (applicationValidationStatus)
+- fieldValidationRequired 콘텐츠: ${ContentCatalog.fieldValidationRequiredContentCount}
+- deskReviewed 등: ContentCatalog.applicationValidationCounts()
 
 ## 7. 검사
 - 콘텐츠: duplicateIds/emptyTitles/brokenRelatedIds

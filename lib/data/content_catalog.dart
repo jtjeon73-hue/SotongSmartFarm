@@ -29,6 +29,7 @@ import 'fmea_data.dart';
 import 'runbook_data.dart';
 import 'fatsat_data.dart';
 import 'phase3_case_data.dart';
+import 'phase_closure_data.dart';
 
 class ContentCatalog {
   ContentCatalog._();
@@ -37,6 +38,15 @@ class ContentCatalog {
     ...phase2SensorPlcOverrides,
     ...phase2CommDataAiOverrides,
   };
+
+  static final Map<String, SmartFarmContent> _closureOverrides =
+      phaseClosureOverrides;
+
+  static SmartFarmContent _applyOverrides(SmartFarmContent item) {
+    final merged =
+        _closureOverrides[item.id] ?? _phase2Overrides[item.id] ?? item;
+    return merged.normalizedValidation();
+  }
 
   static final List<SmartFarmContent> allContents = [
     for (final item in [
@@ -52,8 +62,9 @@ class ContentCatalog {
       ...safetyContents,
       ...glossaryContents,
     ])
-      _phase2Overrides[item.id] ?? item,
-    ...phase3ExpertContents,
+      _applyOverrides(item),
+    for (final item in phase3ExpertContents)
+      _applyOverrides(_closureOverrides[item.id] ?? item),
   ];
 
   static List<String> get phase2EnrichedIds =>
@@ -61,9 +72,34 @@ class ContentCatalog {
 
   static int get phase2EnrichedCount => _phase2Overrides.length;
 
-  static List<SmartFarmContent> get phase3ExpertPages => phase3ExpertContents;
+  static List<String> get phaseClosureEnrichedIds =>
+      _closureOverrides.keys.toList(growable: false);
+
+  static int get phaseClosureEnrichedCount => _closureOverrides.length;
+
+  static List<SmartFarmContent> get phase3ExpertPages => [
+    for (final item in phase3ExpertContents)
+      _applyOverrides(_closureOverrides[item.id] ?? item),
+  ];
 
   static int get phase3ExpertCount => phase3ExpertContents.length;
+
+  static int get fieldValidationRequiredContentCount => allContents
+      .where(
+        (c) =>
+            c.applicationValidationStatus ==
+            ApplicationValidationStatus.fieldValidationRequired,
+      )
+      .length;
+
+  static Map<ApplicationValidationStatus, int> applicationValidationCounts() {
+    final m = <ApplicationValidationStatus, int>{};
+    for (final c in allContents) {
+      m[c.applicationValidationStatus] =
+          (m[c.applicationValidationStatus] ?? 0) + 1;
+    }
+    return m;
+  }
 
   static final Map<String, SmartFarmContent> _byId = {
     for (final item in allContents) item.id: item,

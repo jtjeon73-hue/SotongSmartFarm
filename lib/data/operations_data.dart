@@ -76,7 +76,9 @@ const List<SmartFarmContent> operationsContents = [
     keywords: ['현장조사', '전원', '접지', '음영'],
     relatedIds: ['ops-requirements', 'ops-equipment', 'comm-farm-network'],
     sourceIds: ['src-kesco'],
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -203,7 +205,9 @@ const List<SmartFarmContent> operationsContents = [
     farmTypes: [FarmType.general],
     keywords: ['시운전', '교정', '통합시험'],
     relatedIds: ['ops-training', 'comm-diagnostics', 'ops-incident'],
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(

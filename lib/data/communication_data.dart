@@ -318,7 +318,9 @@ const List<SmartFarmContent> communicationContents = [
     farmTypes: [FarmType.greenhouse, FarmType.openField, FarmType.livestock],
     keywords: ['Wi-Fi', '무선', 'AP', '간섭', '로밍'],
     relatedIds: ['comm-lora', 'comm-offline', 'comm-farm-network'],
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -367,7 +369,9 @@ const List<SmartFarmContent> communicationContents = [
     farmTypes: [FarmType.openField, FarmType.orchard, FarmType.livestock],
     keywords: ['LoRa', 'LoRaWAN', '저전력', '게이트웨이', '듀티사이클'],
     relatedIds: ['comm-wifi', 'comm-gateway', 'comm-offline'],
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(title: '용도', body: '토양수분·기상 등 저빈도 센서 업링크.'),

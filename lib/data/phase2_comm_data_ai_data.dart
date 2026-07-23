@@ -463,7 +463,9 @@ const Map<String, SmartFarmContent> phase2CommDataAiOverrides = {
       FarmType.livestock,
     ],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -1324,7 +1326,9 @@ const Map<String, SmartFarmContent> phase2CommDataAiOverrides = {
     contentType: ContentType.procedure,
     farmTypes: const [FarmType.general],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -1450,7 +1454,9 @@ const Map<String, SmartFarmContent> phase2CommDataAiOverrides = {
     contentType: ContentType.technology,
     farmTypes: const [FarmType.hydroponics],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -1577,7 +1583,9 @@ const Map<String, SmartFarmContent> phase2CommDataAiOverrides = {
     contentType: ContentType.technology,
     farmTypes: const [FarmType.livestock],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(

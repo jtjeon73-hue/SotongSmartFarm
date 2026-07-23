@@ -1,5 +1,4 @@
-const fs = require('fs');
-const dart = `import '../models/project_report.dart';
+import '../models/project_report.dart';
 
 /// Phase closure quality remediation report (UTF-8).
 const ProjectReport currentProjectReport = ProjectReport(
@@ -14,7 +13,7 @@ const ProjectReport currentProjectReport = ProjectReport(
     'type-aware ContentQualityGrader + unit tests',
     'phaseClosureOverrides 20 IDs to B+',
     'applicationValidationStatus separated from source status',
-    'analyzer excludes only tool JS and responsive-results',
+    'analyzer excludes only tool/**/*.js and responsive-results',
     'runbooks ListView.builder + Playwright poll/wait',
     'dart format / analyze / test / web release',
   ],
@@ -29,6 +28,3 @@ const ProjectReport currentProjectReport = ProjectReport(
     '잔여 C/D 입문·용어 페이지 선택 보강',
   ],
 );
-`;
-fs.writeFileSync('lib/data/project_report_data.dart', dart, { encoding: 'utf8' });
-console.log('wrote project_report_data.dart');

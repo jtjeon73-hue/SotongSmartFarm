@@ -1,30 +1,30 @@
 import '../models/project_report.dart';
 
-/// Phase-3 expert deepening report (UTF-8).
+/// Phase closure quality remediation report (UTF-8).
 const ProjectReport currentProjectReport = ProjectReport(
-  phase: '3단계 전문가 심화·품질 완성',
+  phase: '3단계 마감 보정(품질·검증 공백 해소)',
   workDate: '2026-07-23',
   changeSummary:
-      '실제 ContentQualityGrader 기반 A/B/C/D 분석, 전문가 아키텍처·제어검증·FMEA·'
-      '안전·보안·AI/MLOps·디지털트윈·에너지·신뢰성·SLO·로그·런북·FAT/SAT·변경관리 '
-      '콘텐츠와 전문가 도구 12종, 프롬프트 확장, 출처 정밀화, 사례 심화를 반영했다. '
-      'Firebase Secret·자동배포 인증은 재생성하지 않았다.',
+      '핵심 D등급 20개 수동 보강, 콘텐츠 유형별 ContentQualityGrader, '
+      '출처/적용 검증상태 분리, needsReview 출처 일부 재분류, '
+      'tool Dart 정적분석 복원, /runbooks ListView 최적화, 반응형·품질 테스트 보강. '
+      'Firebase Secret·자동배포 인증은 변경하지 않았다.',
   checkResults: [
-    'ContentQualityGrader 기준 등급(글자수 단독 부여 금지)',
-    'phase3 expert contents 16 + FMEA/runbook/FAT-SAT/expert-tools/code-examples',
-    'expert_calcs unit tests (availability, validity, alarm KPI, confusion, energy, RPN)',
+    'type-aware ContentQualityGrader + unit tests',
+    'phaseClosureOverrides 20 IDs to B+',
+    'applicationValidationStatus separated from source status',
+    'analyzer excludes only tool JS and responsive-results',
+    'runbooks ListView.builder + Playwright poll/wait',
     'dart format / analyze / test / web release',
-    '전체 반응형 Playwright 재검사(주요 경로)',
-    'kept FIREBASE_SERVICE_ACCOUNT_SOTONG_SMART_FARM secret',
   ],
-  commitHash: '950a446de1022e6c531839fe45aac9eaae53490b',
+  commitHash: 'PENDING_AFTER_COMMIT',
   githubActionsUrl: 'https://github.com/jtjeon73-hue/SotongSmartFarm/actions',
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
   remainingWork: [
-    'manufacturerManualRequired: PLC 주소·RAW·타이머 현장 매뉴얼 확인',
-    'fieldValidationRequired: 실설비 FAT/SAT·정전복구·축사비상환기 시험',
-    'AI: 실제 데이터로만 지표 산출, 드리프트 모니터링 운영 절차 확정',
-    '법령·전기안전 수치는 최신 공식자료 확인 후 확정',
+    'manufacturerManualRequired: PLC 주소·RAW·타이머',
+    'applicationValidationStatus=fieldValidationRequired 실설비 시험',
+    'needsReview 출처의 개별 게시물 URL 연결',
+    '잔여 C/D 입문·용어 페이지 선택 보강',
   ],
 );

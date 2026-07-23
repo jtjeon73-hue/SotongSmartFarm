@@ -87,6 +87,9 @@ enum VerificationStatus {
   versionDependent,
   needsReview,
   manufacturerManualRequired,
+
+  /// Deprecated on sources. On legacy content rows, catalog maps this to
+  /// [ApplicationValidationStatus.fieldValidationRequired].
   fieldValidationRequired,
   educationalExample;
 
@@ -101,9 +104,39 @@ enum VerificationStatus {
       case VerificationStatus.manufacturerManualRequired:
         return 'manufacturerManualRequired';
       case VerificationStatus.fieldValidationRequired:
-        return 'fieldValidationRequired';
+        return 'fieldValidationRequired(legacy)';
       case VerificationStatus.educationalExample:
         return 'educationalExample';
+    }
+  }
+}
+
+/// How the *content application* was validated (separate from source status).
+enum ApplicationValidationStatus {
+  notApplicable,
+  deskReviewed,
+  calculationValidated,
+  compileValidated,
+  labValidationRequired,
+  fieldValidationRequired,
+  fieldValidated;
+
+  String get label {
+    switch (this) {
+      case ApplicationValidationStatus.notApplicable:
+        return 'notApplicable';
+      case ApplicationValidationStatus.deskReviewed:
+        return 'deskReviewed';
+      case ApplicationValidationStatus.calculationValidated:
+        return 'calculationValidated';
+      case ApplicationValidationStatus.compileValidated:
+        return 'compileValidated';
+      case ApplicationValidationStatus.labValidationRequired:
+        return 'labValidationRequired';
+      case ApplicationValidationStatus.fieldValidationRequired:
+        return 'fieldValidationRequired';
+      case ApplicationValidationStatus.fieldValidated:
+        return 'fieldValidated';
     }
   }
 }
@@ -156,6 +189,7 @@ class SmartFarmContent {
     this.relatedIds = const [],
     this.sourceIds = const [],
     this.verificationStatus = VerificationStatus.educationalExample,
+    this.applicationValidationStatus = ApplicationValidationStatus.deskReviewed,
     this.checkedAt,
     this.qualityGrade,
     this.tocTitles = const [],
@@ -173,6 +207,9 @@ class SmartFarmContent {
   final List<String> relatedIds;
   final List<String> sourceIds;
   final VerificationStatus verificationStatus;
+
+  /// Application/field validation — not the same as sourceVerificationStatus.
+  final ApplicationValidationStatus applicationValidationStatus;
   final String? checkedAt;
 
   /// Optional phase-2 editorial grade: A/B/C/D.
@@ -201,5 +238,31 @@ class SmartFarmContent {
       }
     }
     return buffer.toString();
+  }
+
+  /// Normalize legacy verificationStatus.fieldValidationRequired onto application.
+  SmartFarmContent normalizedValidation() {
+    if (verificationStatus != VerificationStatus.fieldValidationRequired) {
+      return this;
+    }
+    return SmartFarmContent(
+      id: id,
+      title: title,
+      summary: summary,
+      category: category,
+      difficulty: difficulty,
+      contentType: contentType,
+      farmTypes: farmTypes,
+      sections: sections,
+      keywords: keywords,
+      relatedIds: relatedIds,
+      sourceIds: sourceIds,
+      verificationStatus: VerificationStatus.educationalExample,
+      applicationValidationStatus:
+          ApplicationValidationStatus.fieldValidationRequired,
+      checkedAt: checkedAt,
+      qualityGrade: qualityGrade,
+      tocTitles: tocTitles,
+    );
   }
 }

@@ -140,7 +140,9 @@ const List<SmartFarmContent> phase3ExpertContents = [
     contentType: ContentType.procedure,
     farmTypes: const [FarmType.general, FarmType.greenhouse],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -462,7 +464,9 @@ const List<SmartFarmContent> phase3ExpertContents = [
     contentType: ContentType.technology,
     farmTypes: const [FarmType.greenhouse, FarmType.livestock],
     qualityGrade: 'B',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
@@ -629,7 +633,9 @@ const List<SmartFarmContent> phase3ExpertContents = [
     contentType: ContentType.checklist,
     farmTypes: const [FarmType.general],
     qualityGrade: 'A',
-    verificationStatus: VerificationStatus.fieldValidationRequired,
+    verificationStatus: VerificationStatus.educationalExample,
+    applicationValidationStatus:
+        ApplicationValidationStatus.fieldValidationRequired,
     checkedAt: '2026-07-23',
     sections: [
       ContentSection(
