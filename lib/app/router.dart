@@ -4,10 +4,15 @@ import 'package:go_router/go_router.dart';
 import '../app/navigation.dart';
 import '../screens/cases_page.dart';
 import '../screens/checklists_page.dart';
+import '../screens/code_examples_page.dart';
 import '../screens/content_page.dart';
+import '../screens/expert_tools_page.dart';
+import '../screens/fatsat_page.dart';
+import '../screens/fmea_page.dart';
 import '../screens/home_page.dart';
 import '../screens/project_report_page.dart';
 import '../screens/prompts_page.dart';
+import '../screens/runbooks_page.dart';
 import '../screens/search_page.dart';
 import '../screens/tools_page.dart';
 import '../widgets/app_shell.dart';
@@ -56,6 +61,23 @@ GoRouter createRouter() {
           GoRoute(
             path: '/checklists',
             builder: (context, state) => const ChecklistsPage(),
+          ),
+          GoRoute(path: '/fmea', builder: (context, state) => const FmeaPage()),
+          GoRoute(
+            path: '/runbooks',
+            builder: (context, state) => const RunbooksPage(),
+          ),
+          GoRoute(
+            path: '/fat-sat',
+            builder: (context, state) => const FatSatPage(),
+          ),
+          GoRoute(
+            path: '/expert-tools',
+            builder: (context, state) => const ExpertToolsPage(),
+          ),
+          GoRoute(
+            path: '/code-examples',
+            builder: (context, state) => const CodeExamplesPage(),
           ),
           GoRoute(
             path: '/project/report',

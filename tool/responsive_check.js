@@ -19,10 +19,19 @@ const SIZES = [
 const PATHS = [
   '/',
   '/overview/what-is-smart-farm',
-  '/search',
-  '/cases',
+  '/sensors/temp-humidity',
+  '/control/interlock',
+  '/communication/modbus-rtu',
+  '/ai/anomaly',
+  '/tools',
+  '/checklists',
   '/prompts',
   '/project/report',
+  '/fmea',
+  '/fat-sat',
+  '/runbooks',
+  '/expert-tools',
+  '/expert/architecture',
 ];
 
 const outDir = path.join('tool', 'responsive-results');

@@ -133,6 +133,32 @@ class CaseDetailPage extends StatelessWidget {
                   kind: SectionKind.fieldCheck,
                 ),
                 section('확장 방향', c.extensions),
+                if (c.expertDeepDive.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    '전문가 심화(교육용)',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.deepNavy,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const CalloutBox(
+                    title: '교육용 설계 사례',
+                    body: '실제 구축·성과·비용을 확인하지 않은 학습용 심화입니다.',
+                    kind: SectionKind.caution,
+                  ),
+                  ...c.expertDeepDive.entries.map(
+                    (e) => CalloutBox(
+                      title: e.key,
+                      body: e.value.isEmpty ? '-' : e.value.first,
+                      bullets: e.value.length > 1
+                          ? e.value.sublist(1)
+                          : const [],
+                      kind: SectionKind.expertNote,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

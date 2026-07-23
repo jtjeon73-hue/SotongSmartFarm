@@ -46,9 +46,13 @@ void main() {
 
   test('사례·프롬프트·용어·출처 최소 수량을 충족한다', () {
     expect(ContentCatalog.cases.length, greaterThanOrEqualTo(10));
-    expect(ContentCatalog.prompts.length, greaterThanOrEqualTo(30));
+    expect(ContentCatalog.prompts.length, greaterThanOrEqualTo(50));
     expect(ContentCatalog.terms.length, greaterThanOrEqualTo(20));
     expect(ContentCatalog.sources, isNotEmpty);
+  });
+
+  test('메뉴 그룹에 전문가 심화가 포함된다', () {
+    expect(AppNavigation.groups.any((g) => g.id == 'expert'), isTrue);
   });
 
   test('2단계 실무 보강 콘텐츠가 30개 이상이다', () {

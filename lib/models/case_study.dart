@@ -21,6 +21,7 @@ class CaseStudy {
     this.relatedIds = const [],
     this.keywords = const [],
     this.isEducational = true,
+    this.expertDeepDive = const {},
   });
 
   final String id;
@@ -42,4 +43,7 @@ class CaseStudy {
   final List<String> relatedIds;
   final List<String> keywords;
   final bool isEducational;
+
+  /// Optional expert sections: title -> bullet list (educational design).
+  final Map<String, List<String>> expertDeepDive;
 }

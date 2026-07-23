@@ -16,6 +16,8 @@ import 'overview_data.dart';
 import 'phase2_comm_data_ai_data.dart';
 import 'phase2_prompt_data.dart';
 import 'phase2_sensor_plc_data.dart';
+import 'phase3_expert_data.dart';
+import 'phase3_prompt_data.dart';
 import 'project_report_data.dart';
 import 'prompt_data.dart';
 import 'safety_security_data.dart';
@@ -23,6 +25,10 @@ import 'sensor_data.dart';
 import 'software_data.dart';
 import 'source_data.dart';
 import 'checklist_data.dart';
+import 'fmea_data.dart';
+import 'runbook_data.dart';
+import 'fatsat_data.dart';
+import 'phase3_case_data.dart';
 
 class ContentCatalog {
   ContentCatalog._();
@@ -47,6 +53,7 @@ class ContentCatalog {
       ...glossaryContents,
     ])
       _phase2Overrides[item.id] ?? item,
+    ...phase3ExpertContents,
   ];
 
   static List<String> get phase2EnrichedIds =>
@@ -54,16 +61,22 @@ class ContentCatalog {
 
   static int get phase2EnrichedCount => _phase2Overrides.length;
 
+  static List<SmartFarmContent> get phase3ExpertPages => phase3ExpertContents;
+
+  static int get phase3ExpertCount => phase3ExpertContents.length;
+
   static final Map<String, SmartFarmContent> _byId = {
     for (final item in allContents) item.id: item,
   };
 
   static SmartFarmContent? byId(String id) => _byId[id];
 
-  static List<CaseStudy> get cases => caseStudies;
+  static List<CaseStudy> get cases => [
+    for (final c in caseStudies) applyPhase3CaseDeepDive(c),
+  ];
 
   static CaseStudy? caseById(String id) {
-    for (final item in caseStudies) {
+    for (final item in cases) {
       if (item.id == id) return item;
     }
     return null;
@@ -72,9 +85,16 @@ class ContentCatalog {
   static List<PromptTemplate> get prompts => [
     ...promptTemplates,
     ...phase2PromptTemplates,
+    ...phase3PromptTemplates,
   ];
 
   static List<PracticalChecklist> get checklists => practicalChecklists;
+
+  static List<FmeaRow> get fmeaRows => educationalFmeaRows;
+
+  static List<Runbook> get runbooks => expertRunbooks;
+
+  static List<TestCaseItem> get fatSatItems => fatSatTemplates;
 
   static List<GlossaryTerm> get terms => glossaryTerms;
 
@@ -128,7 +148,7 @@ class ContentCatalog {
     for (final item in caseStudies) {
       if (!seen.add(item.id)) dupes.add(item.id);
     }
-    for (final item in promptTemplates) {
+    for (final item in prompts) {
       if (!seen.add(item.id)) dupes.add(item.id);
     }
     for (final item in glossaryTerms) {
@@ -163,7 +183,9 @@ class ContentCatalog {
             caseById(related) == null &&
             sourceById(related) == null &&
             !glossaryTerms.any((t) => t.id == related) &&
-            !promptTemplates.any((p) => p.id == related)) {
+            !prompts.any((p) => p.id == related) &&
+            !fmeaRows.any((f) => f.id == related) &&
+            !runbooks.any((r) => r.id == related)) {
           bad.add('${item.id}->$related');
         }
       }

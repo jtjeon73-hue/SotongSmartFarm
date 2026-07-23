@@ -24,6 +24,8 @@ IconData navIcon(String name) {
       return Icons.security;
     case 'folder_special':
       return Icons.folder_special_outlined;
+    case 'workspace_premium':
+      return Icons.workspace_premium_outlined;
     case 'menu_book':
       return Icons.menu_book_outlined;
     case 'info':

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../app/navigation.dart';
 import '../core/theme/app_theme.dart';
 import '../data/content_catalog.dart';
+import '../models/smart_farm_content.dart';
 import '../widgets/content_widgets.dart';
 
 class ContentPage extends StatelessWidget {
@@ -76,15 +77,37 @@ class ContentPage extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 20),
-          ...content.sections.map(
-            (s) => CalloutBox(
+          ...content.sections.map((s) {
+            final box = CalloutBox(
               title: s.title,
               body: s.body,
               kind: s.kind,
               bullets: s.bullets,
               copyText: s.copyText,
-            ),
-          ),
+            );
+            final expertLayer =
+                s.kind == SectionKind.expertNote ||
+                s.kind == SectionKind.danger ||
+                s.kind == SectionKind.manufacturer ||
+                s.kind == SectionKind.fieldValidation ||
+                s.title.contains('전문가') ||
+                s.title.contains('설계 판단') ||
+                s.title.contains('위험') ||
+                s.title.contains('검증') ||
+                s.title.contains('현장');
+            if (content.difficulty == Difficulty.expert || !expertLayer) {
+              return box;
+            }
+            return Card(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: ExpansionTile(
+                title: Text('전문가 영역 · ${s.title}'),
+                subtitle: const Text('접기/펼치기 — 초보 학습은 쉬운 설명부터'),
+                childrenPadding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                children: [box],
+              ),
+            );
+          }),
           if (content.sourceIds.isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(

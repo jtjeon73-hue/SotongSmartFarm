@@ -1,59 +1,128 @@
-# 콘텐츠 품질 분석 (2단계 착수 시점 / 보강 후)
+# 콘텐츠 품질 분석 보고
 
 기준일: 2026-07-23  
-분석 대상: SmartFarmContent 115개 (glossary 콘텐츠 포함)
+분석 대상: `ContentCatalog.allContents` **131**건  
+판정 구현: `lib/core/quality/content_quality_grader.dart`  
+실행: `dart run tool/print_quality.dart`
+
+## 실제 등급 집계
+
+| 등급 | 건수 |
+|------|------|
+| A | 29 |
+| B | 42 |
+| C | 21 |
+| D | 39 |
+| **합계** | **131** |
+
+검증: 29+42+21+39 = 131.
+
+### 2단계 실무 보강 32건
+
+| 등급 | 건수 |
+|------|------|
+| A | 19 |
+| B | 13 |
+| C | 0 |
+| D | 0 |
+
+### 3단계 전문가 페이지 16건
+
+| ID | 등급 | matched |
+|----|------|---------|
+| expert-architecture | B | 10 |
+| expert-edge-cloud | A | 11 |
+| expert-control-validation | A | 11 |
+| expert-fmea | B | 9 |
+| expert-safety-process | C | 7 |
+| expert-security | B | 8 |
+| expert-ai-evaluation | B | 9 |
+| expert-mlops | C | 5 |
+| expert-digital-twin | B | 8 |
+| expert-energy | C | 7 |
+| expert-reliability | C | 6 |
+| expert-slo | B | 8 |
+| expert-logging | D | 4 |
+| expert-runbooks | B | 8 |
+| expert-fat-sat | B | 8 |
+| expert-change-mgmt | C | 6 |
+
+메타 `qualityGrade` 필드는 참고용이며, **공식 집계는 grader 결과**만 사용한다.
 
 ## 등급 정의
 
-- **A**: 설계·설치·진단·안전까지 실무 참고 가능
-- **B**: 기본 학습 + 일부 실무 적용
-- **C**: 개념·소개 중심
-- **D**: 부족·반복·검증 필요
+- **A**: 기준을 폭넓게 충족 (설계·절차·안전·한계 등)
+- **B**: 학습 + 일부 실무 적용
+- **C**: 개념·부분 절차
+- **D**: 기준 충족 폭이 좁음
 
-글자 수만으로 판정하지 않음. 원리·배선·진단·안전·출처·검증상태를 함께 봄.
+**글자 수만으로 A를 부여하지 않는다.**
 
-## 보강 전 (1단계 종료 추정)
+## 판정 방법
 
-| 분야 | A | B | C | D | 비고 |
-|------|---|---|---|---|------|
-| 센서 | 0 | 2 | 7 | 1 | 설치·스케일·진단 얇음 |
-| PLC·제어 | 0 | 3 | 8 | 1 | 모드/인터록 부족 |
-| 통신 | 0 | 2 | 9 | 1 | RS-485/Modbus 실무 부족 |
-| 데이터·SW | 0 | 2 | 8 | 2 | quality/알람 생명주기 부족 |
-| 환경·사례 | 0 | 2 | 5 | 0 | 양액·축사 안전 부족 |
-| AI | 0 | 1 | 9 | 2 | 적용한계는 있으나 절차 부족 |
-| 기타(개요·운영·안전·용어) | 0 | 5 | 40 | 6 | 입문용 유지 |
-| **합계(대략)** | **0** | **17** | **86** | **12** | |
+1. **14개 내용 기준** 키워드 매칭  
+2. **섹션 kind·제목 증거** (safety/danger→safety, fieldValidation→diagnosis/limits, flow→dataFlow 등) — 길이 아님  
+3. **구조 보너스** (sections≥8, copyText, sources, relatedIds, 특수 kind, practical/expert)  
+4. 임계값: A matched≥11 & score≥14 / B matched≥8 & score≥10 / C matched≥5 / 그 외 D
 
-## 보강 후 (2단계 핵심 32개 오버라이드)
+## 대표 수동 검토
 
-보강 ID 수: **32** (전체 일괄 승급 없음)
+### A 샘플
 
-| 분야 | 보강 수 | 목표 등급 |
-|------|---------|-----------|
-| 센서 | 7 | A/B |
-| PLC·제어 | 7 | A/B |
-| 통신 | 6 | A/B |
-| 데이터·SW | 5 | A/B |
-| 환경(수경·축산) | 2 | A/B |
-| AI·분석 | 5 | A/B |
+- `overview-what`, `overview-data-to-control` — 개념+흐름  
+- `sensor-temp-humidity`, `sensor-soil-moisture` — phase2 실무 보강  
+- `expert-edge-cloud`, `expert-control-validation` — 배치·검증 절차
 
-보강 후 전체 추정:
+### D 샘플 (보완 우선)
 
-- A: ~18
-- B: ~25
-- C: ~65
-- D: ~7 (미보강·출처 needsReview 잔존)
+- `env-orchard` — 환경 소개 위주  
+- `sw-remote`, `sw-auth`, `sw-mobile`, `sw-mfc` — 소프트웨어 입문 위주  
+- `expert-logging` — 필드 권장만 있어 폭이 좁음
 
-## 우선순위
+수동 검토: A/B는 학습·절차 참고에 유용. D는 입문으로 유효하나 전문가 판단 근거로는 추가 보강 필요. **현장 합격·인증과 무관**.
 
-1. 센서 스케일·교정·고장진단  
-2. PLC 모드·인터록·시퀀스  
-3. RS-485/Modbus·농장망  
-4. 데이터 품질·알람  
-5. 관수·환기·양액·축사  
-6. AI 이상/예측/영상 (제어 직결 금지)
+## 관련 자산 실측
 
-## 남은 C/D
+| 항목 | 개수 |
+|------|------|
+| 전체 콘텐츠 | 131 |
+| 2단계 override | 32 |
+| 3단계 전문가 페이지 | 16 |
+| 프롬프트 | 56 |
+| FMEA | 14 |
+| 런북 | 20 |
+| FAT/SAT | 23 |
+| 사례 | 10 |
+| 출처 | 38 |
 
-개요·하드웨어 일반·일부 운영·용어 페이지는 1단계 학습용으로 유지. 3단계에서 전문가 아키텍처·보안·모델평가로 확장.
+### 출처 상태
+
+| 상태 | 개수 |
+|------|------|
+| verified | 9 |
+| versionDependent | 6 |
+| needsReview | 11 |
+| manufacturerManualRequired | 1 |
+| fieldValidationRequired | 0 |
+| educationalExample | 11 |
+| **합계** | **38** |
+
+## 자동 판정의 한계
+
+1. 키워드·섹션 kind 기반이라 동의어·표만 있는 문서는 과소/과대 가능  
+2. 내용의 **정확성·현장증거**는 측정하지 않음  
+3. 중복 문장·템플릿 반복의 정밀 탐지는 제한적  
+4. 전수 전문가 리뷰가 아님 (표본 수동 검토)  
+5. A 등급 ≠ 현장 적용 승인
+
+## 남은 보완
+
+- D 페이지(특히 SW·환경·logging)에 진단·시험·한계 섹션 추가  
+- 출처 fieldValidationRequired 연결  
+- 제조사 매뉴얼·실설비 FAT/SAT
+
+## 관련 문서
+
+- [expert-content-standard.md](./expert-content-standard.md)
+- [phase3-completion-report.md](./phase3-completion-report.md)
+- [practical-content-standard.md](./practical-content-standard.md)
