@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const BASE = 'https://sotong-smart-farm.web.app';
+const BASE = process.env.BASE || 'https://sotong-smart-farm.web.app';
 const SIZES = [
   [360, 800],
   [390, 844],
