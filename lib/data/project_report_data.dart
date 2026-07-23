@@ -17,7 +17,7 @@ const ProjectReport currentProjectReport = ProjectReport(
     'runbooks ListView.builder + Playwright poll/wait',
     'dart format / analyze / test / web release',
   ],
-  commitHash: 'PENDING_AFTER_COMMIT',
+  commitHash: 'c26106758cc8ab4e4eed02b7c0c153a38013d8d2',
   githubActionsUrl: 'https://github.com/jtjeon73-hue/SotongSmartFarm/actions',
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
