@@ -17,7 +17,7 @@ const ProjectReport currentProjectReport = ProjectReport(
     '전체 반응형 Playwright 재검사(주요 경로)',
     'kept FIREBASE_SERVICE_ACCOUNT_SOTONG_SMART_FARM secret',
   ],
-  commitHash: 'PENDING_AFTER_COMMIT',
+  commitHash: '950a446de1022e6c531839fe45aac9eaae53490b',
   githubActionsUrl: 'https://github.com/jtjeon73-hue/SotongSmartFarm/actions',
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
