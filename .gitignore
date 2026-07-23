@@ -53,4 +53,5 @@ package.json
 package-lock.json
 tool/responsive-results/
 tool/register_hosting_secret.js
+tool/write_phase2_report.js
 

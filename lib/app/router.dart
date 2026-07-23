@@ -3,11 +3,13 @@ import 'package:go_router/go_router.dart';
 
 import '../app/navigation.dart';
 import '../screens/cases_page.dart';
+import '../screens/checklists_page.dart';
 import '../screens/content_page.dart';
 import '../screens/home_page.dart';
 import '../screens/project_report_page.dart';
 import '../screens/prompts_page.dart';
 import '../screens/search_page.dart';
+import '../screens/tools_page.dart';
 import '../widgets/app_shell.dart';
 
 final GlobalKey<NavigatorState> _rootKey = GlobalKey<NavigatorState>();
@@ -46,6 +48,14 @@ GoRouter createRouter() {
           GoRoute(
             path: '/prompts',
             builder: (context, state) => const PromptsPage(),
+          ),
+          GoRoute(
+            path: '/tools',
+            builder: (context, state) => const ToolsPage(),
+          ),
+          GoRoute(
+            path: '/checklists',
+            builder: (context, state) => const ChecklistsPage(),
           ),
           GoRoute(
             path: '/project/report',

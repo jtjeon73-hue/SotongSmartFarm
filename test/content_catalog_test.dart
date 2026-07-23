@@ -46,9 +46,24 @@ void main() {
 
   test('사례·프롬프트·용어·출처 최소 수량을 충족한다', () {
     expect(ContentCatalog.cases.length, greaterThanOrEqualTo(10));
-    expect(ContentCatalog.prompts.length, greaterThanOrEqualTo(15));
+    expect(ContentCatalog.prompts.length, greaterThanOrEqualTo(30));
     expect(ContentCatalog.terms.length, greaterThanOrEqualTo(20));
     expect(ContentCatalog.sources, isNotEmpty);
+  });
+
+  test('2단계 실무 보강 콘텐츠가 30개 이상이다', () {
+    expect(ContentCatalog.phase2EnrichedCount, greaterThanOrEqualTo(30));
+    for (final id in ContentCatalog.phase2EnrichedIds) {
+      final c = ContentCatalog.byId(id);
+      expect(c, isNotNull, reason: id);
+      expect(c!.sections.length, greaterThanOrEqualTo(6), reason: id);
+      expect(
+        c.difficulty == Difficulty.practical ||
+            c.difficulty == Difficulty.expert,
+        isTrue,
+        reason: id,
+      );
+    }
   });
 
   test('공식 URL 형식이 http(s)이다', () {

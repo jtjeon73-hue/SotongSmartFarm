@@ -745,6 +745,18 @@ class AppNavigation {
           route: '/prompts',
           contentId: null,
         ),
+        NavItem(
+          id: 'tools',
+          title: '실무 계산 도구',
+          route: '/tools',
+          contentId: null,
+        ),
+        NavItem(
+          id: 'checklists',
+          title: '실무 체크리스트',
+          route: '/checklists',
+          contentId: null,
+        ),
       ],
     ),
     NavGroup(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../core/theme/app_theme.dart';
 import '../models/smart_farm_content.dart';
@@ -66,25 +67,34 @@ class CalloutBox extends StatelessWidget {
     required this.body,
     required this.kind,
     this.bullets = const [],
+    this.copyText,
   });
 
   final String title;
   final String body;
   final SectionKind kind;
   final List<String> bullets;
+  final String? copyText;
 
   Color get _color {
     switch (kind) {
       case SectionKind.important:
         return AppColors.teal;
       case SectionKind.safety:
+      case SectionKind.danger:
         return AppColors.danger;
       case SectionKind.fieldCheck:
+      case SectionKind.fieldValidation:
         return AppColors.field;
       case SectionKind.expertNote:
         return AppColors.expert;
       case SectionKind.flow:
+      case SectionKind.practical:
         return AppColors.farmGreen;
+      case SectionKind.caution:
+        return AppColors.warning;
+      case SectionKind.manufacturer:
+        return const Color(0xFF5B4B8A);
       case SectionKind.normal:
         return AppColors.deepNavy;
     }
@@ -95,13 +105,21 @@ class CalloutBox extends StatelessWidget {
       case SectionKind.important:
         return Icons.lightbulb_outline;
       case SectionKind.safety:
+      case SectionKind.danger:
         return Icons.warning_amber_rounded;
       case SectionKind.fieldCheck:
+      case SectionKind.fieldValidation:
         return Icons.fact_check_outlined;
       case SectionKind.expertNote:
         return Icons.biotech_outlined;
       case SectionKind.flow:
         return Icons.account_tree_outlined;
+      case SectionKind.practical:
+        return Icons.handyman_outlined;
+      case SectionKind.caution:
+        return Icons.report_problem_outlined;
+      case SectionKind.manufacturer:
+        return Icons.menu_book_outlined;
       case SectionKind.normal:
         return Icons.article_outlined;
     }
@@ -110,15 +128,25 @@ class CalloutBox extends StatelessWidget {
   String get _kindLabel {
     switch (kind) {
       case SectionKind.important:
-        return '중요 개념';
+        return '핵심';
       case SectionKind.safety:
-        return '안전 경고';
+        return '주의';
+      case SectionKind.danger:
+        return '위험';
       case SectionKind.fieldCheck:
         return '현장 확인';
+      case SectionKind.fieldValidation:
+        return '현장 검증';
       case SectionKind.expertNote:
         return '전문가 메모';
       case SectionKind.flow:
         return '기술 흐름';
+      case SectionKind.practical:
+        return '실무';
+      case SectionKind.caution:
+        return '주의';
+      case SectionKind.manufacturer:
+        return '제조사 확인';
       case SectionKind.normal:
         return '설명';
     }
@@ -185,6 +213,39 @@ class CalloutBox extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+          ],
+          if (copyText != null && copyText!.trim().isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.lightGray,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: SelectableText(
+                copyText!,
+                style: const TextStyle(fontFamily: 'monospace', height: 1.45),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: OutlinedButton.icon(
+                onPressed: () async {
+                  await Clipboard.setData(ClipboardData(text: copyText!));
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('코드·공식·절차를 복사했습니다.'),
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.copy, size: 18),
+                label: const Text('공식·코드 복사'),
               ),
             ),
           ],

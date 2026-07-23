@@ -42,6 +42,8 @@ class ContentPage extends StatelessWidget {
             style: const TextStyle(height: 1.55, fontSize: 16),
           ),
           const SizedBox(height: 14),
+          if (content.qualityGrade != null)
+            MetaChip(label: '품질 ${content.qualityGrade}'),
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -54,6 +56,25 @@ class ContentPage extends StatelessWidget {
                 MetaChip(label: '확인일 ${content.checkedAt}'),
             ],
           ),
+          if (content.sections.length >= 4) ...[
+            const SizedBox(height: 16),
+            Text(
+              '목차',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: AppColors.deepNavy,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (var i = 0; i < content.sections.length; i++)
+                  MetaChip(label: '${i + 1}. ${content.sections[i].title}'),
+              ],
+            ),
+          ],
           const SizedBox(height: 20),
           ...content.sections.map(
             (s) => CalloutBox(
@@ -61,6 +82,7 @@ class ContentPage extends StatelessWidget {
               body: s.body,
               kind: s.kind,
               bullets: s.bullets,
+              copyText: s.copyText,
             ),
           ),
           if (content.sourceIds.isNotEmpty) ...[

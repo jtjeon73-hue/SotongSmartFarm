@@ -108,21 +108,39 @@ enum VerificationStatus {
   }
 }
 
+enum SectionKind {
+  normal,
+  important,
+  safety,
+  fieldCheck,
+  expertNote,
+  flow,
+  practical,
+  caution,
+  danger,
+  manufacturer,
+  fieldValidation,
+}
+
 class ContentSection {
   const ContentSection({
     required this.title,
     required this.body,
     this.bullets = const [],
     this.kind = SectionKind.normal,
+    this.copyText,
+    this.codeLanguage,
   });
 
   final String title;
   final String body;
   final List<String> bullets;
   final SectionKind kind;
-}
 
-enum SectionKind { normal, important, safety, fieldCheck, expertNote, flow }
+  /// Optional formula/code/procedure text for one-tap copy.
+  final String? copyText;
+  final String? codeLanguage;
+}
 
 class SmartFarmContent {
   const SmartFarmContent({
@@ -139,6 +157,8 @@ class SmartFarmContent {
     this.sourceIds = const [],
     this.verificationStatus = VerificationStatus.educationalExample,
     this.checkedAt,
+    this.qualityGrade,
+    this.tocTitles = const [],
   });
 
   final String id;
@@ -155,6 +175,10 @@ class SmartFarmContent {
   final VerificationStatus verificationStatus;
   final String? checkedAt;
 
+  /// Optional phase-2 editorial grade: A/B/C/D.
+  final String? qualityGrade;
+  final List<String> tocTitles;
+
   String get searchableText {
     final buffer = StringBuffer()
       ..write(title)
@@ -170,6 +194,11 @@ class SmartFarmContent {
         ..write(section.body)
         ..write(' ')
         ..write(section.bullets.join(' '));
+      if (section.copyText != null) {
+        buffer
+          ..write(' ')
+          ..write(section.copyText);
+      }
     }
     return buffer.toString();
   }

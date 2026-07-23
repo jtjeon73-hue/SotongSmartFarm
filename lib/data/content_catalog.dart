@@ -13,29 +13,46 @@ import 'glossary_data.dart';
 import 'hardware_data.dart';
 import 'operations_data.dart';
 import 'overview_data.dart';
+import 'phase2_comm_data_ai_data.dart';
+import 'phase2_prompt_data.dart';
+import 'phase2_sensor_plc_data.dart';
 import 'project_report_data.dart';
 import 'prompt_data.dart';
 import 'safety_security_data.dart';
 import 'sensor_data.dart';
 import 'software_data.dart';
 import 'source_data.dart';
+import 'checklist_data.dart';
 
 class ContentCatalog {
   ContentCatalog._();
 
+  static final Map<String, SmartFarmContent> _phase2Overrides = {
+    ...phase2SensorPlcOverrides,
+    ...phase2CommDataAiOverrides,
+  };
+
   static final List<SmartFarmContent> allContents = [
-    ...overviewContents,
-    ...farmingEnvironmentContents,
-    ...sensorContents,
-    ...controlPlcContents,
-    ...hardwareContents,
-    ...communicationContents,
-    ...softwareContents,
-    ...aiContents,
-    ...operationsContents,
-    ...safetyContents,
-    ...glossaryContents,
+    for (final item in [
+      ...overviewContents,
+      ...farmingEnvironmentContents,
+      ...sensorContents,
+      ...controlPlcContents,
+      ...hardwareContents,
+      ...communicationContents,
+      ...softwareContents,
+      ...aiContents,
+      ...operationsContents,
+      ...safetyContents,
+      ...glossaryContents,
+    ])
+      _phase2Overrides[item.id] ?? item,
   ];
+
+  static List<String> get phase2EnrichedIds =>
+      _phase2Overrides.keys.toList(growable: false);
+
+  static int get phase2EnrichedCount => _phase2Overrides.length;
 
   static final Map<String, SmartFarmContent> _byId = {
     for (final item in allContents) item.id: item,
@@ -52,7 +69,12 @@ class ContentCatalog {
     return null;
   }
 
-  static List<PromptTemplate> get prompts => promptTemplates;
+  static List<PromptTemplate> get prompts => [
+    ...promptTemplates,
+    ...phase2PromptTemplates,
+  ];
+
+  static List<PracticalChecklist> get checklists => practicalChecklists;
 
   static List<GlossaryTerm> get terms => glossaryTerms;
 
