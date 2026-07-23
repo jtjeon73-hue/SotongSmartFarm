@@ -16,7 +16,7 @@ const ProjectReport currentProjectReport = ProjectReport(
     '교육용 사례 10건, 프롬프트 15건 이상, 용어 24건 이상',
     '시크릿·서비스계정 JSON을 Git에 포함하지 않음',
   ],
-  commitHash: 'PENDING',
+  commitHash: 'f0f05c31cb8e9aa8988dc2c5a61e6d90ec9a22a9',
   githubActionsUrl: 'https://github.com/jtjeon73-hue/SotongSmartFarm/actions',
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
