@@ -21,10 +21,9 @@ const ProjectReport currentProjectReport = ProjectReport(
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
   remainingWork: [
-    'GitHub Secret FIREBASE_SERVICE_ACCOUNT_SOTONG_SMART_FARM 등록 및 Actions 배포 확인',
     '2단계: 실무 심화 콘텐츠·고장진단 절차·데이터 품질 실무 예시',
     '3단계: 전문가 분석 예제·모델 평가·공식 출처 verified 확대',
     '출처 URL 주기 재확인(needsReview/versionDependent)',
-    '커밋 해시 PENDING을 실제 배포 커밋으로 갱신',
+    '반응형: Flutter Canvas 한계로 DOM 기반 메뉴/복사 토스트 자동검증은 수동·스크린샷 보완',
   ],
 );

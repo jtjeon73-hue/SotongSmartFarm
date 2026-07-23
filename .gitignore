@@ -47,3 +47,10 @@ app.*.map.json
 # Firebase
 .firebase/
 
+# Local Node tooling / responsive artifacts
+node_modules/
+package.json
+package-lock.json
+tool/responsive-results/
+tool/register_hosting_secret.js
+

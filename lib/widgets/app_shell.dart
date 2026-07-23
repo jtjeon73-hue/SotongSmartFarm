@@ -48,8 +48,11 @@ class _AppShellState extends State<AppShell> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text(
-          '${AppConstants.appName} · ${AppConstants.appTagline}',
+        title: Text(
+          isDesktop
+              ? '${AppConstants.appName} · ${AppConstants.appTagline}'
+              : AppConstants.appName,
+          overflow: TextOverflow.ellipsis,
         ),
         leading: isDesktop
             ? null
