@@ -14,7 +14,7 @@ const ProjectReport currentProjectReport = ProjectReport(
     'dart format / analyze / test / web release',
     'kept existing FIREBASE_SERVICE_ACCOUNT_SOTONG_SMART_FARM secret',
   ],
-  commitHash: 'PENDING',
+  commitHash: 'b71a110d59e5338df70788b783b3a29f79dddf52',
   githubActionsUrl: 'https://github.com/jtjeon73-hue/SotongSmartFarm/actions',
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
