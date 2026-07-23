@@ -114,7 +114,10 @@ async function measureHeader(page) {
       };
 
       try {
-        const resp = await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+        const resp = await page.goto(url, {
+          waitUntil: 'domcontentloaded',
+          timeout: 45000,
+        });
         item.httpStatus = resp ? resp.status() : null;
         item.checked.push('HTTP status');
         item.flutterRendered = await waitForFlutter(page);
