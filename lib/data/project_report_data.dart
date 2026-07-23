@@ -18,7 +18,7 @@ const ProjectReport currentProjectReport = ProjectReport(
     'FIREBASE_SERVICE_ACCOUNT_SOTONG_SMART_FARM Secret 등록 및 Actions deploy 성공',
     'Playwright 반응형 스모크: 7개 해상도 × 6개 경로 HTTP 200·렌더·가로 overflow 없음',
   ],
-  commitHash: 'undefined',
+  commitHash: 'c62124ea35011f1cbcbae9d6830005daad932b42',
   githubActionsUrl: 'https://github.com/jtjeon73-hue/SotongSmartFarm/actions',
   firebaseProjectId: 'sotong-smart-farm',
   liveUrl: 'https://sotong-smart-farm.web.app',
